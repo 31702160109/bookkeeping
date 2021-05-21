@@ -1,0 +1,46 @@
+<!--pages/home/home.wxml-->
+<view class="home-page">
+  <view class="header-box">
+    <view class="date-select-box">
+      <picker mode="date" value="{{ date }}" fields="month" start="2021-01" end="2022-09" bindchange="bindDateChange">
+        <view class="picker">
+          <view class="date-text">{{date}}</view>
+          <image class="date-icon" src="/static/images/date-select-icon.png"></image>
+        </view>
+      </picker>
+    </view>
+    <view class="header-main-box">
+      <view class="header-main-item">
+        <view class="header-main-title">收入</view>
+        <view class="header-main-price">{{ listData.revenue }}</view>
+      </view>
+      <view class="header-main-item">
+        <view class="header-main-title">支出</view>
+        <view class="header-main-price">{{ listData.expense }}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="main-box">
+    <view class="list-box" wx:for="{{ listData.monthData }}" wx:key="index"  >
+      <view class="list-title">{{ listData.month }}月{{ item.day }}号</view>
+      <view class="list-item" wx:for="{{ item.dayData }}" wx:for-item="dayItem" wx:for-index="dayIndex" wx:key="dayIndex">
+        <view class="list-item-info-box">
+          <view class="img-box">
+            <image class="list-icon" src="/static/images/list-icon.png"></image>
+          </view>
+          
+          <view class="list-item-info">
+            <view class="name">{{ dayItem.name }}</view>
+            <view class="time">{{ dayItem.time }}</view>
+          </view>
+        </view>
+        <view class="list-item-price">-{{ dayItem.price }}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="add-btn">
+    <image class="add-icon" src="/static/images/add-icon.png"></image>
+  </view>
+</view>
